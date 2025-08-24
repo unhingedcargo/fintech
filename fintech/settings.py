@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)%^8ktft3bqp$dly%4c14fx=eje+%l9)id&3j$!&8%arj-u=28'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
@@ -84,12 +84,20 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fastapi',
-        'USER' : 'root',
-        'HOST' : 'localhost',
-        'PASSWORD' : 'whitesatin',
+        'NAME': 'bnadkuwamr7blr2jsi4b',
+        'USER' : 'uyqvvdl5z2icnhht',
+        'HOST' : 'bnadkuwamr7blr2jsi4b-mysql.services.clever-cloud.com',
+        'PASSWORD' : 'xGeqOWbPhHFyFrO7PqAK',
         'PORT' : 3306,
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'fastapi',
+    #     'USER' : 'root',
+    #     'HOST' : 'localhost',
+    #     'PASSWORD' : 'whitesatin',
+    #     'PORT' : 3306,
+    # }
 }
 
 
