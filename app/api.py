@@ -57,7 +57,7 @@ def get_contact(request, slug:str):
     contact = Contact.objects.filter(Q(display_name__icontains=slug)|Q(name__icontains=slug)|Q(company_name__icontains=slug)|Q(contact=slug)|Q(gstin=slug))
     return contact
 
-@api.put("/contact/update/{slug}", response=ContactSchema)
+@api.patch("/contact/update/{slug}", response=ContactSchema)
 def update_contact(request, slug:str, payload:ContactSchema):
     contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
     update_data = payload.dict(exclude_unset=True)
