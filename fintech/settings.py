@@ -18,9 +18,8 @@ ALLOWED_HOSTS = ["*"]
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.168.0.0:3000"
     "http://127.168.0.0:3000",
-    "https://fintech-frontend-mpvt.onrender.com"
+    "https://fintech-frontend-mpvt.onrender.com",
 ]
 
 # Application definition
