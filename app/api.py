@@ -60,8 +60,9 @@ def get_contact(request, slug:str):
 @api.put("/contact/update/{slug}", response=ContactSchema)
 def update_contact(request, slug:str, payload:ContactSchema):
     contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
+    update_data = payload.dict(exclude_unset=True)
 
-    for attr, value in payload.dict().items():
+    for attr, value in update_data.items():
         setattr(contact, attr, value)
     
     contact.save()
