@@ -41,3 +41,8 @@ class CustomerIN(ModelSchema):
     class Config:
         model = Contact
         model_exclude = ["id", "closing_balance"]
+
+class ItemSchema(ModelSchema):
+    class Config:
+        model = Item
+        model_exclude = ["id"]

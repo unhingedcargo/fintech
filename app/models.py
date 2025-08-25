@@ -2,7 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Jobcard(models.Model):
-    jobno = models.CharField(max_length=10)
+
+    jobno = models.CharField(max_length=10, unique=True)
     job_date = models.DateField(auto_created=True, auto_now_add=True)
     # order_id = models.IntegerField()
     cust_id = models.IntegerField()
@@ -42,4 +43,18 @@ class Contact(models.Model):
     gstin = models.CharField(max_length=20, null=True, blank=True)
     opening_balance = models.FloatField(default=0.0)
     closing_balance = models.FloatField(default=0.0)
+
+class TaxRates(models.Model):
+    slab = models.CharField(max_length=10, unique=True)
+    rate = models.DecimalField(max_digits=3, decimal_places=2, unique=True)
+
+
+class Item(models.Model):
+    code = models.CharField(max_length=20, null=True, blank=True)
+    item = models.CharField(max_length=50, null=True, blank=True)
+    hsn_code = models.CharField(max_length=20, null=True, blank=True)
+    taxrates = models.ForeignKey(TaxRates, on_delete=models.CASCADE, related_name="taxes")
+    purchase_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    sales_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
     

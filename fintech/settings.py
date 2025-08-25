@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Django settings for fintech project.
 
@@ -10,6 +11,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+=======
+>>>>>>> 72bb5c7620dcc7270ffaea8d56697253642a4cc4
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,14 +26,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)%^8ktft3bqp$dly%4c14fx=eje+%l9)id&3j$!&8%arj-u=28'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = True
 
 ALLOWED_HOSTS = []
+=======
+DEBUG = False
+
+ALLOWED_HOSTS = ["*"]
+>>>>>>> 72bb5c7620dcc7270ffaea8d56697253642a4cc4
 
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+<<<<<<< HEAD
     "http://127.168.0.0:3000"
+=======
+    "http://127.168.0.0:3000",
+    "https://fintech-frontend-mpvt.onrender.com"
+>>>>>>> 72bb5c7620dcc7270ffaea8d56697253642a4cc4
 ]
 
 # Application definition
@@ -84,12 +98,29 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'fastapi',
         'USER' : 'root',
         'HOST' : 'localhost',
         'PASSWORD' : 'whitesatin',
         'PORT' : 3306,
     }
+=======
+        'NAME': 'bnadkuwamr7blr2jsi4b',
+        'USER' : 'uyqvvdl5z2icnhht',
+        'HOST' : 'bnadkuwamr7blr2jsi4b-mysql.services.clever-cloud.com',
+        'PASSWORD' : 'xGeqOWbPhHFyFrO7PqAK',
+        'PORT' : 3306,
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'fastapi',
+    #     'USER' : 'root',
+    #     'HOST' : 'localhost',
+    #     'PASSWORD' : 'whitesatin',
+    #     'PORT' : 3306,
+    # }
+>>>>>>> 72bb5c7620dcc7270ffaea8d56697253642a4cc4
 }
 
 
