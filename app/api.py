@@ -85,24 +85,3 @@ def all_vendors(request):
 
 
 
-
-
-
-# @api.post("/items", response=Job)
-# def create_item(request, data: ItemCreateSchema):
-#     item = Item.objects.create(**data.dict())
-#     return item
-
-# @api.put("/items/{item_id}", response=Job)
-# def update_item(request, item_id: int, data: ItemUpdateSchema):
-#     item = get_object_or_404(Item, id=item_id)
-#     for attr, value in data.dict(exclude_unset=True).items():
-#         setattr(item, attr, value)
-#     item.save()
-#     return item
-
-# @api.delete("/items/{item_id}")
-# def delete_item(request, item_id: int):
-#     item = get_object_or_404(Item, id=item_id)
-#     item.delete()
-#     return {"success": True}
