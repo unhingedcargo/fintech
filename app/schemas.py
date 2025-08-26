@@ -36,6 +36,7 @@ class ContactSchema(ModelSchema):
     class Config:
         model = Contact
         model_exclude = ["id"]
+        model_fields_optional = "__all__"
 
 class CustomerIN(ModelSchema):
     class Config:
