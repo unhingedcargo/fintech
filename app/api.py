@@ -1,4 +1,5 @@
 from ninja import NinjaAPI
+from ninja.responses import Response
 from typing import List
 from django.shortcuts import get_object_or_404
 from .models import *
@@ -42,6 +43,9 @@ def get_jobcard(request, id:str):
         "orders": list(jobcard.orders.all())
     }
 
+
+
+#CONTACT REQUEST METHODS ( FOR CUSTOMER AND VENDOR BOTH CRUD)
 @api.post("/contact/create", response=CustomerIN)
 def create_customer(request, payload:CustomerIN):
     contact = Contact.objects.create(**payload.dict())
@@ -56,6 +60,13 @@ def all_contact(request):
 def get_contact(request, slug:str):
     contact = Contact.objects.filter(Q(display_name__icontains=slug)|Q(name__icontains=slug)|Q(company_name__icontains=slug)|Q(contact=slug)|Q(gstin=slug))
     return contact
+
+@api.delete("contact/delete/{slug}", response={200:dict})
+def delete_contact(request, slug:str):
+    contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
+    contact.delete()
+    return {"status":"Deleted"}
+
 
 @api.patch("/contact/update/{slug}", response=ContactSchema)
 def update_contact(request, slug:str, payload:ContactSchema):
