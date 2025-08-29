@@ -1,4 +1,5 @@
 from ninja import ModelSchema, Schema
+from typing import Optional
 from .models import *
 from datetime import date
 
@@ -37,6 +38,20 @@ class ContactSchema(ModelSchema):
         model = Contact
         model_exclude = ["id"]
         model_fields_optional = "__all__"
+
+class ContactPatchSchema(Schema):
+    display_name: Optional[str] = None
+    name: Optional[str] = None
+    company_name: Optional[str] = None
+    contact: Optional[str] = None
+    alt_contact: Optional[str] = None
+    email: Optional[str] = None
+    gstin: Optional[str] = None
+    acc_type: Optional[str] = None
+    type_of_contact: Optional[str] = None
+    opening_balance: Optional[float] = None
+    closing_balance: Optional[float] = None
+    taxable: Optional[bool] = None
 
 class CustomerIN(ModelSchema):
     class Config:
