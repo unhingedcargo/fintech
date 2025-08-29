@@ -71,7 +71,7 @@ def delete_contact(request, slug:str):
 @api.patch("/contact/update/{slug}", response=ContactPatchSchema)
 def update_contact(request, slug:str, payload:ContactPatchSchema):
     contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
-    update_data = payload.dict()
+    update_data = payload.dict(exclude_unset=True)
 
     for attr, value in update_data.items():
         setattr(contact, attr, value)
