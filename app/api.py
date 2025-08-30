@@ -64,22 +64,19 @@ def get_contact(request, slug:str):
         contact = Contact.objects.filter(Q(display_name__icontains=slug)|Q(name__icontains=slug)|Q(company_name__icontains=slug)|Q(contact=slug)|Q(gstin=slug)|Q(cust_id=UUID(slug)))
     except ValueError:
         contact = Contact.objects.filter(Q(display_name__icontains=slug)|Q(name__icontains=slug)|Q(company_name__icontains=slug)|Q(contact=slug)|Q(gstin=slug))
-    # contact = Contact.objects.filter(cust_id_icontains=slug)
-    # contact = Contact.objects.filter(cust_id=UUID(slug))
     return contact
 
 @api.delete("contact/delete/{slug}", response={200:dict})
 def delete_contact(request, slug:str):
     slug = unquote(slug)
-    print(slug)
-    contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
+    contact = get_object_or_404(Contact, cust_id=UUID(slug))
     contact.delete()
     return {"status":"Deleted"}
 
 @api.patch("/contact/update/{slug}", response=ContactSchema)
 def update_contact(request, slug:str, payload:ContactPatchSchema):
     slug = unquote(slug)
-    contact = get_object_or_404(Contact, Q(display_name__icontains=slug) | Q(name__icontains=slug) | Q(company_name__icontains=slug))
+    contact = get_object_or_404(Contact, cust_id=UUID(slug))
     update_data = payload.dict(exclude_unset=True)
 
     for attr, value in update_data.items():
