@@ -40,23 +40,26 @@ class ContactSchema(ModelSchema):
         model_fields_optional = "__all__"
 
 class ContactPatchSchema(Schema):
-    display_name: Optional[str] = None
-    name: Optional[str] = None
-    company_name: Optional[str] = None
-    contact: Optional[str] = None
-    alt_contact: Optional[str] = None
-    email: Optional[str] = None
-    gstin: Optional[str] = None
-    acc_type: Optional[str] = None
-    type_of_contact: Optional[str] = None
-    opening_balance: Optional[float] = None
-    closing_balance: Optional[float] = None
-    taxable: Optional[bool] = None
+    acc_type : Optional[str] = None
+    type_of_contact : Optional[str] = None
+    company_name : Optional[str] = None
+    name : Optional[str] = None
+    display_name : Optional[str] = None
+    contact : Optional[str] = None
+    alt_contact : Optional[str] = None
+    email : Optional[str] = None
+    taxable : Optional[bool] = None
+    gstin : Optional[str] = None
+    opening_balance : Optional[float] = None
+    closing_balance : Optional[float] = None
+
+
 
 class CustomerIN(ModelSchema):
     class Config:
         model = Contact
         model_exclude = ["id", "closing_balance"]
+        model_fields_optional = "__all__"
 
 class ItemSchema(ModelSchema):
     class Config:

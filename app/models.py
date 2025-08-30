@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class Jobcard(models.Model):
@@ -31,6 +32,7 @@ class Order(models.Model):
     amount = models.FloatField()
 
 class Contact(models.Model):
+    cust_id = models.UUIDField(default=uuid.uuid4, editable=False)
     acc_type = models.CharField(max_length=10) # Sales or Purchase
     type_of_contact = models.CharField(max_length=10) # Customer or Vendor
     company_name = models.CharField(max_length=100, null=True, blank=True)
