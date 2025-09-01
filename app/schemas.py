@@ -53,8 +53,6 @@ class ContactPatchSchema(Schema):
     opening_balance : Optional[float] = None
     closing_balance : Optional[float] = None
 
-
-
 class CustomerIN(ModelSchema):
     class Config:
         model = Contact
@@ -65,3 +63,17 @@ class ItemSchema(ModelSchema):
     class Config:
         model = Item
         model_exclude = ["id"]
+        model_fields_optional = "__all__"
+
+class ItemPatchSchema(Schema):
+    type : Optional[str] = None
+    code : Optional[str] = None
+    item : Optional[str] = None
+    unit : Optional[str] = None
+    hsn_code : Optional[str] = None
+    tax_preference : Optional[str] = None
+    taxrates : Optional[float] = None
+    purchase_rate : Optional[float] = None
+    sales_rate : Optional[float] = None
+
+

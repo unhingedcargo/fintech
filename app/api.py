@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from .models import *
 from .schemas import *
 from django.db.models import Q, Max
-from urllib.parse import unquote
+# from urllib.parse import unquote
 from uuid import UUID
 
 api = NinjaAPI()
@@ -49,7 +49,7 @@ def get_jobcard(request, id:str):
 
 #CONTACT REQUEST METHODS ( FOR CUSTOMER AND VENDOR BOTH CRUD)
 @api.post("/contact/create", response=CustomerIN)
-def create_customer(request, payload:CustomerIN):
+def create_contact(request, payload:CustomerIN):
     contact = Contact.objects.create(**payload.dict())
     return contact
 
@@ -68,14 +68,12 @@ def get_contact(request, slug:str):
 
 @api.delete("contact/delete/{slug}", response={200:dict})
 def delete_contact(request, slug:str):
-    slug = unquote(slug)
     contact = get_object_or_404(Contact, cust_id=UUID(slug))
     contact.delete()
     return {"status":"Deleted"}
 
 @api.patch("/contact/update/{slug}", response=ContactSchema)
 def update_contact(request, slug:str, payload:ContactPatchSchema):
-    slug = unquote(slug)
     contact = get_object_or_404(Contact, cust_id=UUID(slug))
     update_data = payload.dict(exclude_unset=True)
 
@@ -95,4 +93,37 @@ def all_vendors(request):
     return vendors
 
 
+# PRODUCT (ITEMS) REQUEST METHODS
+@api.post("/item/create", response=ItemSchema)
+def create_item(request, payload:ItemSchema):
+    item = Item.objects.create(**payload.dict(exclude_unset=True))
+    return item
 
+@api.get("item/all", response=list[ItemSchema])
+def get_items(request):
+    items = Item.objects.all()
+    return items
+
+@api.get("item/{slug}", response=list[ItemSchema])
+def get_item(request, slug:str):
+    try:
+        item = Item.objects.filter(Q(type__icontains=slug)|Q(item__icontains=slug)|Q(code__icontains=slug)|Q(item_id=UUID(slug)))
+    except ValueError:
+        item = Item.objects.filter(Q(type__icontains=slug)|Q(item__icontains=slug)|Q(code__icontains=slug))
+    return item
+
+@api.patch("item/update/{slug}", response=ItemSchema)
+def update_item(request, slug:str, payload:ItemPatchSchema):
+    item = get_object_or_404(Item, item_id=UUID(slug))
+    update_data = payload.dict(exclude_unset=True)
+
+    for attr, value in update_data.items():
+        setattr(item, attr, value)
+    item.save()
+    return item
+
+@api.delete("item/delete/{slug}", response={200:dict})
+def delete_item(request, slug:str):
+    item = get_object_or_404(Item, item_id=UUID(slug))
+    item.delete()
+    return {"status" : "Deleted"}
