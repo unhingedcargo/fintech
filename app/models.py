@@ -3,10 +3,9 @@ import uuid
 
 # Create your models here.
 class Jobcard(models.Model):
-
+    jobcard_id = models.UUIDField(default=uuid.uuid1, editable=False)
     jobno = models.CharField(max_length=10, unique=True)
     job_date = models.DateField(auto_created=True, auto_now_add=True)
-    # order_id = models.IntegerField()
     cust_id = models.IntegerField()
     taxable_amount = models.FloatField(null=True, blank=True)
     tax_amount = models.FloatField(null=True, blank=True)
@@ -18,7 +17,6 @@ class Jobcard(models.Model):
         return f'{self.jobno}-{self.job_date}'
 
 class Order(models.Model):
-    # jobno = models.CharField(max_length=5)
     jobcard = models.ForeignKey(Jobcard, on_delete=models.CASCADE, related_name="orders")
     account = models.CharField(max_length=100) # Sales or Purchase
     item_no = models.SmallIntegerField()
@@ -58,7 +56,6 @@ class Item(models.Model):
     unit = models.CharField(max_length=10, default="nos", null=True, blank=True)
     hsn_code = models.CharField(max_length=20, null=True, blank=True)
     tax_preference = models.CharField(max_length=20, null=True, blank=True)
-    # taxrates = models.ForeignKey(TaxRates, on_delete=None, related_name="taxes")
     taxrates = models.CharField(max_length=5, null=True, blank=True)
     taxrates = models.DecimalField(max_digits=5, decimal_places=2 , null=True, blank=True)
     purchase_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
