@@ -18,8 +18,8 @@ class Jobcard(models.Model):
 
 class Order(models.Model):
     jobcard = models.ForeignKey(Jobcard, on_delete=models.CASCADE, related_name="orders")
-    account = models.CharField(max_length=100) # Sales or Purchase
     item_no = models.SmallIntegerField()
+    item_id = models.CharField(max_length=100, null=True, blank=True)
     item = models.CharField(max_length=50)
     desc = models.CharField(max_length=100)
     qty = models.FloatField(null=True, blank=True)

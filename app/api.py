@@ -13,7 +13,7 @@ api = NinjaAPI()
 @api.get("/nextjobno")
 def nextjobno(request):
     last_jobcard = Jobcard.objects.aggregate(Max("jobno"))["jobno__max"] or "0"
-    return str(int(last_jobcard)+1).zfill(6)
+    return str(int(last_jobcard)+1).zfill(5)
 
 
 @api.post("/estimate/create", response=JobcardOut)
