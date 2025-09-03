@@ -56,8 +56,7 @@ class Item(models.Model):
     unit = models.CharField(max_length=10, default="nos", null=True, blank=True)
     hsn_code = models.CharField(max_length=20, null=True, blank=True)
     tax_preference = models.CharField(max_length=20, null=True, blank=True)
-    taxrates = models.CharField(max_length=5, null=True, blank=True)
-    taxrates = models.DecimalField(max_digits=5, decimal_places=2 , null=True, blank=True)
+    tax_rate = models.DecimalField(max_digits=5, decimal_places=2 , null=True, blank=True)
     purchase_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     sales_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
