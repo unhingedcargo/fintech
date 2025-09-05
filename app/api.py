@@ -101,7 +101,7 @@ def create_item(request, payload:ItemSchema):
 
 @api.get("item/all", response=list[ItemSchema])
 def get_items(request):
-    items = Item.objects.all()
+    items = Item.objects.all().order_by("item")
     return items
 
 @api.get("item/{slug}", response=list[ItemSchema])
