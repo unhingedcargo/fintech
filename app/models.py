@@ -3,7 +3,7 @@ import uuid
 
 # Create your models here.
 class Jobcard(models.Model):
-    # jobcard_id = models.UUIDField(default=uuid.uuid1, editable=False)
+    jobslug = models.CharField(max_length=50)
     jobno = models.CharField(max_length=10, unique=True)
     # job_date = models.DateField(auto_created=True, auto_now_add=True)
     job_date = models.DateField(null=True, blank=True)

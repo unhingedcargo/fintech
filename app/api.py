@@ -30,11 +30,11 @@ def all_jobcard(request):
     jobcard = Jobcard.objects.prefetch_related("orders").all().order_by("-jobno")
     return jobcard
 
-@api.get("/estimate/{id}", response=EstimateOut)
-def get_jobcard(request, id:str):
-    jobcard = Jobcard.objects.prefetch_related("orders").get(jobno=id)
+@api.get("/estimate/{slug}", response=EstimateOut)
+def get_jobcard(request, slug:str):
+    jobcard = Jobcard.objects.prefetch_related("orders").get(jobslug=slug)
     return {
-        "id": jobcard.id,
+        "jobslug" : jobcard.jobslug,
         "jobno": jobcard.jobno,
         "job_date": jobcard.job_date,
         "cust_id": jobcard.cust_id,
