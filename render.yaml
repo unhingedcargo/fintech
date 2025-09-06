@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: fintech-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: fintech.settings
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: DATABASE_URL
+        fromDatabase:
+        value: mysql://uyqvvdl5z2icnhht:xGeqOWbPhHFyFrO7PqAK@bnadkuwamr7blr2jsi4b-mysql.services.clever-cloud.com:3306/bnadkuwamr7blr2jsi4b
+
+

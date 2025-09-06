@@ -5,7 +5,8 @@ import uuid
 class Jobcard(models.Model):
     # jobcard_id = models.UUIDField(default=uuid.uuid1, editable=False)
     jobno = models.CharField(max_length=10, unique=True)
-    job_date = models.DateField(auto_created=True, auto_now_add=True)
+    # job_date = models.DateField(auto_created=True, auto_now_add=True)
+    job_date = models.DateField(null=True, blank=True)
     cust_id = models.IntegerField()
     taxable_amount = models.FloatField(null=True, blank=True)
     tax_amount = models.FloatField(null=True, blank=True)

@@ -18,7 +18,12 @@ class JobcardIn(ModelSchema):
 
     class Config:
         model = Jobcard
-        model_exclude = ["id", "job_date"]
+        model_exclude = ["id"]
+
+class JobcardOut(ModelSchema):
+    class Config:
+        model = Jobcard
+        model_fields = "__all__"
 
 class EstimateOut(ModelSchema):
 
@@ -27,11 +32,6 @@ class EstimateOut(ModelSchema):
         model_fields = "__all__"
         model_exclude = ["id"]
     orders : list[OrderOut] = []
-
-class JobcardOut(ModelSchema):
-    class Config:
-        model = Jobcard
-        model_fields = "__all__"
 
 class ContactSchema(ModelSchema):
     class Config:

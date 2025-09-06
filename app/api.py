@@ -27,7 +27,7 @@ def create_estimate(request, payload:JobcardIn):
 
 @api.get("/jobcard", response=list[JobcardOut])
 def all_jobcard(request):
-    jobcard = Jobcard.objects.prefetch_related("orders").all()
+    jobcard = Jobcard.objects.prefetch_related("orders").all().order_by("-jobno")
     return jobcard
 
 @api.get("/estimate/{id}", response=EstimateOut)

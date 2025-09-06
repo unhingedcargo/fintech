@@ -1,4 +1,5 @@
 from pathlib import Path
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,3 +131,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+cloudinary.config(
+    cloud_name = "diqwjvuaz",  
+    api_key = "117632985185942",  
+    api_secret = "emDmcAD26cs5CsWZ5WdGYCmTWbE" 
+)
+
+
+
