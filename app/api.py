@@ -32,6 +32,7 @@ def all_jobcard(request):
 
 @api.get("/estimate/{slug}", response=EstimateOut)
 def get_jobcard(request, slug:str):
+    print(slug)
     jobcard = Jobcard.objects.prefetch_related("orders").get(jobslug=slug)
     return {
         "jobslug" : jobcard.jobslug,
