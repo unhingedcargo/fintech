@@ -13,6 +13,8 @@ class Jobcard(models.Model):
     discount = models.FloatField(null=True, blank=True)
     grandtotal = models.FloatField()
     advance = models.FloatField(default=0.0)
+    unreg_contact = models.CharField(max_length=100, null=True, blank=True)
+    unreg_contact = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
         return f'{self.jobno}-{self.job_date}'

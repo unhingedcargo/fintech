@@ -73,13 +73,21 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bnadkuwamr7blr2jsi4b',
-        'USER' : 'uyqvvdl5z2icnhht',
-        'HOST' : 'bnadkuwamr7blr2jsi4b-mysql.services.clever-cloud.com',
-        'PASSWORD' : 'xGeqOWbPhHFyFrO7PqAK',
-        'PORT' : 3306,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'birkmpn6thyy9rkcsn4r',
+        'USER' : 'uqadswlozvcuquj2ktdu',
+        'HOST' : 'birkmpn6thyy9rkcsn4r-postgresql.services.clever-cloud.com',
+        'PASSWORD' : 'w4RgX3VUE5eCzrXrIFLgKCJxb2bcKH',
+        'PORT' : 50013,
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'bnadkuwamr7blr2jsi4b',
+    #     'USER' : 'uyqvvdl5z2icnhht',
+    #     'HOST' : 'bnadkuwamr7blr2jsi4b-mysql.services.clever-cloud.com',
+    #     'PASSWORD' : 'xGeqOWbPhHFyFrO7PqAK',
+    #     'PORT' : 3306,
+    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'fastapi',

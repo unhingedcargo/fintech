@@ -85,12 +85,12 @@ def update_contact(request, slug:str, payload:ContactPatchSchema):
 
 @api.get("/customer/all", response=list[ContactSchema])
 def all_customers(request):
-    customers = Contact.objects.filter(Q(type_of_contact="customer")|Q(acc_type="sales"))
+    customers = Contact.objects.filter(Q(type_of_contact__icontains="customer")|Q(acc_type__icontains="sales"))
     return customers
 
 @api.get("/vendor/all", response=list[ContactSchema])
 def all_vendors(request):
-    vendors = Contact.objects.filter(Q(type_of_contact="vendor")|Q(acc_type="purchase"))
+    vendors = Contact.objects.filter(Q(type_of_contact__icontains="vendor")|Q(acc_type__icontains="purchase"))
     return vendors
 
 
