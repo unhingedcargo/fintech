@@ -70,16 +70,26 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# postgresql://unhingedcargo_fintech:2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA@dpg-d32mnpgdl3ps73886uf0-a/fintech_db_tigq
+# postgresql://unhingedcargo_fintech:2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA@dpg-d32mnpgdl3ps73886uf0-a.frankfurt-postgres.render.com/fintech_db_tigq
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'birkmpn6thyy9rkcsn4r',
-        'USER' : 'uqadswlozvcuquj2ktdu',
-        'HOST' : 'birkmpn6thyy9rkcsn4r-postgresql.services.clever-cloud.com',
-        'PASSWORD' : 'w4RgX3VUE5eCzrXrIFLgKCJxb2bcKH',
-        'PORT' : 50013,
+        'NAME': 'fintech_db_tigq',
+        'USER' : 'unhingedcargo_fintech',
+        'HOST' : 'dpg-d32mnpgdl3ps73886uf0-a.frankfurt-postgres.render.com',
+        'PASSWORD' : '2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA',
+        'PORT' : 5432,
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'birkmpn6thyy9rkcsn4r',
+    #     'USER' : 'uqadswlozvcuquj2ktdu',
+    #     'HOST' : 'birkmpn6thyy9rkcsn4r-postgresql.services.clever-cloud.com',
+    #     'PASSWORD' : 'w4RgX3VUE5eCzrXrIFLgKCJxb2bcKH',
+    #     'PORT' : 50013,
+    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'bnadkuwamr7blr2jsi4b',
