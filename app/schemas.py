@@ -14,11 +14,10 @@ class OrderOut(ModelSchema):
         model_fields = "__all__"
 
 class JobcardIn(ModelSchema):
-    orders : list[OrderIn]
-
     class Config:
         model = Jobcard
         model_exclude = ["id"]
+    orders : list[OrderIn]
 
 class JobcardOut(ModelSchema):
     class Config:
