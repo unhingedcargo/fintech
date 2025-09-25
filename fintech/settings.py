@@ -71,15 +71,15 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 # postgresql://unhingedcargo_fintech:2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA@dpg-d32mnpgdl3ps73886uf0-a/fintech_db_tigq
-# postgresql://unhingedcargo_fintech:2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA@dpg-d32mnpgdl3ps73886uf0-a.frankfurt-postgres.render.com/fintech_db_tigq
+# postgresql://user_fintech:kxPCwoGByq6OtEmb7mwBpfuV3uTKy0CF@dpg-d3aknc7diees73dc5rmg-a.virginia-postgres.render.com/fintech_9waj
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fintech_db_tigq',
-        'USER' : 'unhingedcargo_fintech',
-        'HOST' : 'dpg-d32mnpgdl3ps73886uf0-a.frankfurt-postgres.render.com',
-        'PASSWORD' : '2PU0pNRqa1c6MFDHHJUEM88kzHgVvUpA',
+        'NAME': 'fintech_9waj',
+        'USER' : 'user_fintech',
+        'HOST' : 'dpg-d3aknc7diees73dc5rmg-a.virginia-postgres.render.com',
+        'PASSWORD' : 'kxPCwoGByq6OtEmb7mwBpfuV3uTKy0CF',
         'PORT' : 5432,
     }
     # 'default': {

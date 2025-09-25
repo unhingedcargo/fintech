@@ -7,7 +7,7 @@ class Jobcard(models.Model):
     jobno = models.CharField(max_length=10, unique=True)
     # job_date = models.DateField(auto_created=True, auto_now_add=True)
     job_date = models.DateField(null=True, blank=True)
-    cust_id = models.IntegerField()
+    cust_id = models.CharField(max_length=50, null=True, blank=True)
     taxable_amount = models.FloatField(null=True, blank=True)
     tax_amount = models.FloatField(null=True, blank=True)
     discount = models.FloatField(null=True, blank=True)
@@ -52,7 +52,7 @@ class TaxRates(models.Model):
     rate = models.DecimalField(max_digits=3, decimal_places=2, unique=True)
 
 class Item(models.Model):
-    item_id = models.UUIDField(default=uuid.uuid1, editable=False)
+    item_id = models.UUIDField(default=uuid.uuid1, editable=False, null=True, blank=True)
     type = models.CharField(max_length=20, null=True, blank=True)
     code = models.CharField(max_length=20, null=True, blank=True)
     item = models.CharField(max_length=50, null=True, blank=True)
