@@ -2,6 +2,7 @@ from ninja import ModelSchema, Schema
 from typing import Optional
 from .models import *
 from datetime import date
+from uuid import UUID
 
 class OrderIn(ModelSchema):
     class Config:
@@ -14,10 +15,14 @@ class OrderOut(ModelSchema):
         model_fields = "__all__"
 
 class JobcardIn(ModelSchema):
+    cust_id: Optional[UUID] = None
+    unreg_customer: Optional[str] = None
+    unreg_contact: Optional[str] = None
+    orders : list[OrderIn]
+    
     class Config:
         model = Jobcard
         model_exclude = ["id"]
-    orders : list[OrderIn]
 
 class JobcardOut(ModelSchema):
     class Config:
