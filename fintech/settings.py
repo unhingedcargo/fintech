@@ -1,5 +1,5 @@
 from pathlib import Path
-import cloudinary
+# import cloudinary
 import os
 from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qsl
@@ -88,7 +88,6 @@ DATABASES = {
         'PASSWORD': tmpPostgres.password,
         'HOST': tmpPostgres.hostname,
         'PORT': 5432,
-        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
@@ -174,11 +173,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cloudinary.config(
-    cloud_name = "diqwjvuaz",  
-    api_key = "117632985185942",  
-    api_secret = "emDmcAD26cs5CsWZ5WdGYCmTWbE" 
-)
+# cloudinary.config(
+#     cloud_name = "diqwjvuaz",  
+#     api_key = "117632985185942",  
+#     api_secret = "emDmcAD26cs5CsWZ5WdGYCmTWbE" 
+# )
 
 
 
