@@ -15,6 +15,7 @@ class OrderOut(ModelSchema):
         model_fields = "__all__"
 
 class JobcardIn(ModelSchema):
+    
     cust_id: Optional[UUID] = None
     unreg_customer: Optional[str] = None
     unreg_contact: Optional[str] = None

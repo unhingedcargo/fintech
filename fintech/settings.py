@@ -1,5 +1,12 @@
 from pathlib import Path
 import cloudinary
+import os
+from dotenv import load_dotenv
+from urllib.parse import urlparse, parse_qsl
+
+load_dotenv()
+
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,12 +83,21 @@ WSGI_APPLICATION = 'fintech.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER' : 'postgres.vdzmwbjuanrtqrutnlgd',
-        'HOST' : 'aws-1-ap-south-1.pooler.supabase.com',
-        'PASSWORD' : 'Printplus@790',
-        'PORT' : 6543,
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
+        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER' : 'postgres.vdzmwbjuanrtqrutnlgd',
+    #     'HOST' : 'aws-1-ap-south-1.pooler.supabase.com',
+    #     'PASSWORD' : 'Printplus@790',
+    #     'PORT' : 6543,
+    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'be96qdzvd9ngp2e72tjc',
