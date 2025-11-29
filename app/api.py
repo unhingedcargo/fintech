@@ -25,27 +25,28 @@ def create_estimate(request, payload:JobcardIn):
 
     return jobcard
 
-@api.get("/jobcard", response=list[JobcardOut])
+@api.get("/jobcard", response=list[EstimateOut])
 def all_jobcard(request):
     jobcard = Jobcard.objects.prefetch_related("orders").all().order_by("-jobno")
+    for line in jobcard:
+        line.customer = line.unreg_customer
+        line.contact = line.unreg_contact
+        if line.cust_id:
+            customerData = Contact.objects.get(cust_id=line.cust_id)
+            line.customer = customerData.display_name
+            line.contact = customerData.contact
     return jobcard
 
 @api.get("/estimate/{slug}", response=EstimateOut)
 def get_jobcard(request, slug:str):
-    print(slug)
     jobcard = Jobcard.objects.prefetch_related("orders").get(jobslug=slug)
-    return {
-        "jobslug" : jobcard.jobslug,
-        "jobno": jobcard.jobno,
-        "job_date": jobcard.job_date,
-        "cust_id": jobcard.cust_id,
-        "taxable_amount": jobcard.taxable_amount,
-        "tax_amount": jobcard.tax_amount,
-        "discount": jobcard.discount,
-        "grandtotal": jobcard.grandtotal,
-        "orders": list(jobcard.orders.all())
-    }
-
+    jobcard.customer = jobcard.unreg_customer
+    jobcard.contact = jobcard.unreg_contact
+    if jobcard.cust_id:
+        customerData = Contact.objects.get(cust_id=jobcard.cust_id)
+        jobcard.customer = customerData.display_name
+        jobcard.contact = customerData.contact
+    return jobcard
 
 
 #CONTACT REQUEST METHODS ( FOR CUSTOMER AND VENDOR BOTH CRUD)

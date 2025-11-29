@@ -2,8 +2,24 @@ from django.db import models
 import uuid
 
 # Create your models here.
-class Contact(models.Model):
-    cust_id = models.UUIDField(default=uuid.uuid4, editable=False)
+class Account(models.Model):
+    name = models.CharField(max_length=50, null=True, blank=True)
+    txn_type = models.CharField(max_length=20, null=True, blank=True)
+
+class Month(models.Model):
+    year = models.IntegerField()
+    no = models.IntegerField()
+    name = models.CharField(max_length=20, null=True, blank=True)
+    days = models.IntegerField()
+
+class GstRate(models.model):
+    slab = models.CharField(max_length=10, null=True, blank=True)
+    rate = models.FloatField()
+
+
+
+class Ledger(models.Model):
+    ledger_id = models.UUIDField(default=uuid.uuid4, editable=False)
     acc_type = models.CharField(max_length=10) # Sales or Purchase
     type_of_contact = models.CharField(max_length=10) # Customer or Vendor
     company_name = models.CharField(max_length=100, null=True, blank=True)
@@ -16,9 +32,6 @@ class Contact(models.Model):
     gstin = models.CharField(max_length=20, null=True, blank=True)
     opening_balance = models.FloatField(default=0.0)
     closing_balance = models.FloatField(default=0.0)
-
-    def __str__(self):
-        return f"{self.display_name}"
 
 class TaxRates(models.Model):
     slab = models.CharField(max_length=10, unique=True)
@@ -39,7 +52,10 @@ class Item(models.Model):
 class Jobcard(models.Model):
     jobslug = models.CharField(max_length=50)
     jobno = models.CharField(max_length=10, unique=True)
+    # job_date = models.DateField(auto_created=True, auto_now_add=True)
     job_date = models.DateField(null=True, blank=True)
+    # cust_id = models.ForeignKey(Contact, on_delete=models.SET_NULL, null=True, blank=True, related_name="jobcards")
+    # cust_uuid = models.UUIDField(editable=False, null=True, blank=True)
     cust_id = models.UUIDField(editable=False, null=True, blank=True)
     taxable_amount = models.FloatField(null=True, blank=True)
     tax_amount = models.FloatField(null=True, blank=True)
@@ -53,6 +69,7 @@ class Jobcard(models.Model):
     def __str__(self):
         return f'{self.jobno}-{self.job_date}'
     
+
 
 class Order(models.Model):
     jobcard = models.ForeignKey(Jobcard, on_delete=models.CASCADE, related_name="orders")

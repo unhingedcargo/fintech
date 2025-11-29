@@ -15,7 +15,6 @@ class OrderOut(ModelSchema):
         model_fields = "__all__"
 
 class JobcardIn(ModelSchema):
-    
     cust_id: Optional[UUID] = None
     unreg_customer: Optional[str] = None
     unreg_contact: Optional[str] = None
@@ -26,16 +25,19 @@ class JobcardIn(ModelSchema):
         model_exclude = ["id"]
 
 class JobcardOut(ModelSchema):
+    
     class Config:
         model = Jobcard
         model_fields = "__all__"
 
 class EstimateOut(ModelSchema):
-
+    customer : Optional[str] = None
+    contact : Optional[str] = None
     class Config:
         model=Jobcard
         model_fields = "__all__"
-        model_exclude = ["id"]
+        model_exclude = ["id", "unreg_customer", "unreg_contact"]
+        
     orders : list[OrderOut] = []
 
 class ContactSchema(ModelSchema):
